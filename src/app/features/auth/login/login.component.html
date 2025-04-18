@@ -1,0 +1,93 @@
+<div class="login-container">
+  <div class="login-background">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  
+  <div class="login-content" [class.active]="formActive">
+    <div class="logo-container">
+      <img src="assets/intellimed-logo.jpg" alt="Intellimed AI Logo" class="logo">
+      <div class="logo-text">
+        <h1>Intellimed <span class="ai-text">AI</span></h1>
+        <p class="assistant-text">Medical Documentation Assistant</p>
+      </div>
+    </div>
+    
+    <div class="login-card" [class.success-animation]="loginSuccess">
+      <h2 class="card-title">Welcome Back</h2>
+      <p class="card-subtitle">Please enter your credentials to continue</p>
+      
+      <div class="alert alert-error" *ngIf="errorMessage">
+        <span class="alert-icon">!</span>
+        <span class="alert-message">{{ errorMessage }}</span>
+      </div>
+      
+      <form (ngSubmit)="login()" class="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-container">
+            <span class="input-icon">👤</span>
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              [(ngModel)]="username" 
+              placeholder="Enter your username"
+              [disabled]="isLoading"
+              autocomplete="username"
+              required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-container">
+            <span class="input-icon">🔒</span>
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              id="password" 
+              name="password" 
+              [(ngModel)]="password" 
+              placeholder="Enter your password"
+              [disabled]="isLoading"
+              autocomplete="current-password"
+              required>
+            <button 
+              type="button" 
+              class="toggle-password" 
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+              {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+            </button>
+          </div>
+        </div>
+        
+        <div class="form-options">
+          <div class="remember-me">
+            <input 
+              type="checkbox" 
+              id="remember-me" 
+              name="remember-me" 
+              [(ngModel)]="rememberMe">
+            <label for="remember-me">Remember me</label>
+          </div>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="btn-login" 
+          [disabled]="isLoading || !username || !password">
+          <span *ngIf="!isLoading">Log In</span>
+          <span *ngIf="isLoading" class="spinner"></span>
+        </button>
+      </form>
+      
+      <div class="login-footer">
+        <p>© 2025 Intellimed AI. All rights reserved.</p>
+        <p>Secure login with 256-bit encryption</p>
+      </div>
+    </div>
+  </div>
+</div>

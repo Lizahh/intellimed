@@ -1,0 +1,255 @@
+.chart-summary-container {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  margin: 20px 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  max-height: 0;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 2000px; /* Adjust as needed */
+    transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.6s ease;
+  }
+}
+
+.chart-header {
+  background: linear-gradient(135deg, #19A0AF 0%, #20435C 100%);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.agent-info {
+  display: flex;
+  align-items: center;
+}
+
+.agent-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.agent-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.agent-role {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.badge-premium {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
+}
+
+.summary-content {
+  padding: 20px;
+}
+
+.patient-info-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  border-left: 4px solid #19A0AF;
+  
+  h3 {
+    margin: 0 0 8px 0;
+    color: #20435C;
+    font-size: 18px;
+  }
+  
+  p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #495057;
+  }
+}
+
+.summary-section {
+  margin-bottom: 30px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #20435C;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.section-content {
+  color: #495057;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.visit-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.visit-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  
+  .visit-date {
+    font-weight: 600;
+    color: #20435C;
+  }
+  
+  .visit-reason {
+    color: #19A0AF;
+    font-weight: 500;
+  }
+}
+
+.visit-provider {
+  font-size: 13px;
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+.visit-notes {
+  margin: 0;
+  font-size: 14px;
+}
+
+.lab-results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  
+  th {
+    background-color: #f1f3f5;
+    text-align: left;
+    padding: 10px;
+    font-weight: 600;
+    color: #20435C;
+  }
+  
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  tr.abnormal {
+    background-color: #fff8f8;
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.status-indicator {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  
+  &.normal {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  &.high {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  &.low {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+}
+
+.medication-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.medication-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 200px;
+  flex: 1;
+  border-left: 4px solid #19A0AF;
+}
+
+.medication-name {
+  font-weight: 600;
+  color: #20435C;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.medication-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: #495057;
+}
+
+@media (max-width: 768px) {
+  .medication-list {
+    flex-direction: column;
+  }
+  
+  .medication-card {
+    width: 100%;
+  }
+  
+  .lab-results-table {
+    font-size: 12px;
+    
+    th, td {
+      padding: 8px 4px;
+    }
+  }
+}

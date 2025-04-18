@@ -1,0 +1,105 @@
+<div class="sidebar-container">
+  <!-- Add Patient Modal will be shown in the app component -->
+  <div class="logo-container">
+    <img src="assets/intellimed-logo.jpg" alt="Intellimed AI Logo" class="logo">
+    <div class="logo-text">
+      <h1>Intellimed <span class="ai-text">AI</span></h1>
+      <p class="assistant-text">Medical Documentation Assistant</p>
+    </div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="schedule-header">
+      <h2 class="section-title">TODAY'S SCHEDULE</h2>
+      <button class="btn btn-purple btn-sm" (click)="openAddPatientModal()">
+        <i class="add-icon">+</i> Add Patient
+      </button>
+    </div>
+    <p class="current-date">{{ currentDate | date:'EEEE, MMMM d, yyyy' }}</p>
+    
+    <div class="patient-list">
+      <div 
+        *ngFor="let patient of patients$ | async" 
+        class="patient-item" 
+        [class.selected]="(selectedPatientId$ | async) === patient.id"
+        (click)="selectPatient(patient.id || '')">
+        <div class="patient-info">
+          <h3 class="patient-name">{{ patient.name }}</h3>
+          <p class="patient-id">{{ patient.id }}</p>
+          <p class="appointment-time">
+            <i class="time-icon">🕒</i> {{ patient.appointmentTime }}
+          </p>
+        </div>
+        <div class="patient-status">
+          <span *ngIf="patient.status === 'new-patient'" class="status-tag new-patient">New Consult</span>
+          <span *ngIf="patient.status === 'follow-up'" class="status-tag follow-up">Follow Up</span>
+          <span *ngIf="patient.status === 'annual-physical'" class="status-tag annual-physical">Annual Physical</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="agents-section">
+    <h2 class="section-title">AGENTS</h2>
+    <div class="agent-list">
+      <!-- Summer (Chart Summary) Agent -->
+      <div 
+        class="agent-item" 
+        [class.active]="activeAgent === 'summer'"
+        (click)="selectAgent('summer')">
+        <i class="agent-icon document-text">📊</i>
+        <div class="agent-info">
+          <span class="agent-name">Summer</span>
+          <span class="agent-task">Chart Summary</span>
+        </div>
+      </div>
+      
+      <!-- Penny (SOAP Notes) Agent -->
+      <div 
+        class="agent-item" 
+        [class.active]="activeAgent === 'penny'"
+        (click)="selectAgent('penny')">
+        <i class="agent-icon clipboard-check">📝</i>
+        <div class="agent-info">
+          <span class="agent-name">Penny</span>
+          <span class="agent-task">SOAP Notes</span>
+        </div>
+      </div>
+      
+      <!-- Clara (Guidelines) Agent -->
+      <div 
+        class="agent-item" 
+        [class.active]="activeAgent === 'clara'"
+        (click)="selectAgent('clara')">
+        <i class="agent-icon book-open">📋</i>
+        <div class="agent-info">
+          <span class="agent-name">Clara</span>
+          <span class="agent-task">Guidelines</span>
+        </div>
+      </div>
+      
+      <!-- Bill (Coding) Agent -->
+      <div 
+        class="agent-item" 
+        [class.active]="activeAgent === 'bill'"
+        (click)="selectAgent('bill')">
+        <i class="agent-icon code">🔢</i>
+        <div class="agent-info">
+          <span class="agent-name">Bill</span>
+          <span class="agent-task">Coding</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="usage-section">
+    <div class="usage-label">Usage: {{ usagePercentage }}% used</div>
+    <div class="usage-bar">
+      <div class="usage-progress" [style.width.%]="usagePercentage"></div>
+    </div>
+    <div class="settings-button" (click)="openSettings()">
+      <i class="settings-icon">⚙️</i>
+      <span>Settings</span>
+    </div>
+  </div>
+</div>

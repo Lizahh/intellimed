@@ -1,0 +1,91 @@
+<div class="chart-summary-container" [class.visible]="visible">
+  <div class="chart-header">
+    <div class="agent-info">
+      <div class="agent-avatar">
+        <span>S</span>
+      </div>
+      <div class="agent-details">
+        <h2 class="agent-name">Summer</h2>
+        <p class="agent-role">Chart Summary Assistant</p>
+      </div>
+    </div>
+    <div class="badge-premium">Premium AI</div>
+  </div>
+
+  <div class="summary-content">
+    <div class="patient-info-card" *ngIf="currentPatient">
+      <h3>{{ currentPatient.name }}</h3>
+      <p *ngIf="currentPatient.dob">DOB: {{ currentPatient.dob }}</p>
+      <p *ngIf="currentPatient.mrn">MRN: {{ currentPatient.mrn }}</p>
+    </div>
+    
+    <div class="summary-section">
+      <h4 class="section-title">Patient History</h4>
+      <div class="section-content">
+        <p>{{ chartSummary.patientHistory }}</p>
+      </div>
+    </div>
+    
+    <div class="summary-section">
+      <h4 class="section-title">Recent Visits</h4>
+      <div class="section-content">
+        <div class="visit-card" *ngFor="let visit of chartSummary.recentVisits">
+          <div class="visit-header">
+            <span class="visit-date">{{ visit.date }}</span>
+            <span class="visit-reason">{{ visit.reason }}</span>
+          </div>
+          <div class="visit-provider">Provider: {{ visit.provider }}</div>
+          <p class="visit-notes">{{ visit.notes }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="summary-section">
+      <h4 class="section-title">Lab Results</h4>
+      <div class="section-content">
+        <table class="lab-results-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Test</th>
+              <th>Result</th>
+              <th>Reference Range</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lab of chartSummary.labResults" [class.abnormal]="lab.status !== 'Normal'">
+              <td>{{ lab.date }}</td>
+              <td>{{ lab.test }}</td>
+              <td><strong>{{ lab.result }}</strong></td>
+              <td>{{ lab.refRange }}</td>
+              <td>
+                <span class="status-indicator" [class.normal]="lab.status === 'Normal'" 
+                                             [class.high]="lab.status === 'High'"
+                                             [class.low]="lab.status === 'Low'">
+                  {{ lab.status }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="summary-section">
+      <h4 class="section-title">Current Medications</h4>
+      <div class="section-content">
+        <div class="medication-list">
+          <div class="medication-card" *ngFor="let med of chartSummary.medications">
+            <div class="medication-name">{{ med.name }}</div>
+            <div class="medication-details">
+              <span class="med-dosage">{{ med.dosage }}</span>
+              <span class="med-frequency">{{ med.frequency }}</span>
+              <span class="med-date">Started: {{ med.startDate }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

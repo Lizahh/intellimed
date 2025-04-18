@@ -1,0 +1,25 @@
+.patient-details-container {
+  padding: 24px;
+}
+
+.patient-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.patient-name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.visit-type {
+  margin: 0 0 0 16px;
+  padding: 4px 12px;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+}

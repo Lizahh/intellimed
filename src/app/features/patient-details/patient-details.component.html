@@ -1,0 +1,8 @@
+<div class="patient-details-container">
+  <div class="patient-header" *ngIf="currentPatient$ | async as patient">
+    <h2 class="patient-name">{{ patient.name }}</h2>
+    <p class="visit-type">Annual Physical</p>
+  </div>
+
+  <app-soap-notes></app-soap-notes>
+</div>

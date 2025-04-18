@@ -1,0 +1,23 @@
+<div class="patient-info-container">
+  <div class="patient-section">
+    <div class="patient-label">PATIENT</div>
+    <div class="patient-details">
+      <div class="patient-icon">
+        <i class="user-icon fas fa-user"></i>
+      </div>
+      <div class="patient-name">{{ patientName }}</div>
+    </div>
+    <div class="patient-id">ID: {{ patientId }}</div>
+  </div>
+  
+  <div class="visit-type-section">
+    <div class="visit-type-label">VISIT TYPE</div>
+    <div class="visit-type-selector">
+      <select class="visit-type-dropdown" (change)="onVisitTypeChange($any($event.target).value)">
+        <option *ngFor="let type of visitTypes" [value]="type.value" [selected]="type.value === selectedVisitType">
+          {{ type.label }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

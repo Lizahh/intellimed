@@ -1,0 +1,78 @@
+<div class="soap-notes-container">
+  <!-- Patient Information Component -->
+  <app-patient-info 
+    [patientName]="'John Doe'" 
+    [patientId]="'843288'"
+    (visitTypeChanged)="handleVisitTypeChange($event)">
+  </app-patient-info>
+  
+  <div class="agents-container">
+    <h2 class="agents-title">Agents</h2>
+    <div class="agents-list">
+      <div 
+        *ngFor="let tab of tabs" 
+        class="agent-card" 
+        [class.active]="(activeTab$ | async) === tab.id"
+        (click)="setActiveTab(tab.id)">
+        <div class="agent-icon-container">
+          <div class="agent-icon" [ngClass]="tab.icon"></div>
+        </div>
+        <div class="agent-info">
+          <span class="agent-name">{{ tab.agentName }}</span>
+          <span class="agent-task">{{ tab.label }}</span>
+        </div>
+        <div class="agent-actions">
+          <div class="action-icon settings"></div>
+          <div class="action-icon expand"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <!-- Input sections removed as requested -->
+    
+
+    <!-- Context Information -->
+    <div class="context-section">
+      <h3 class="section-title">Context Information <span class="optional-label">(Optional)</span></h3>
+      <textarea 
+        class="context-textarea" 
+        placeholder="Add any additional context that should be considered when generating notes..."
+        [value]="contextInfo$ | async"
+        (input)="updateContextInfo($event)"></textarea>
+    </div>
+
+    <!-- Audio Input -->
+    <div class="audio-section">
+      <h3 class="section-title">Audio Input</h3>
+      <app-audio-recorder></app-audio-recorder>
+    </div>
+
+    <!-- Transcript -->
+    <div class="transcript-section">
+      <h3 class="section-title">Transcript</h3>
+      <div class="transcript-content">
+        <p *ngIf="!(audioService.transcript$ | async)" class="empty-state">
+          Record or upload audio to get started.
+        </p>
+        <p *ngIf="audioService.transcript$ | async">
+          {{ audioService.transcript$ | async }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Generate Button -->
+    <div class="generate-section">
+      <button class="btn-generate" (click)="generateSoapNotes()">
+        <i class="generate-icon">✨</i>
+        Generate SOAP Notes
+      </button>
+    </div>
+    
+    <!-- SOAP Notes Display Component -->
+    <div class="soap-notes-display-section">
+      <app-soap-notes-display></app-soap-notes-display>
+    </div>
+  </div>
+</div>

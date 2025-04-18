@@ -1,0 +1,96 @@
+<div class="coding-component">
+  <div class="coding-header">
+    <h2>Medical Coding Assistant</h2>
+    <p class="subtitle">Generate appropriate CPT and ICD-10 codes for your patient encounter</p>
+  </div>
+
+  <app-patient-info></app-patient-info>
+
+  <div class="coding-form-container">
+    <div class="coding-parameters">
+      <h3>Coding Parameters</h3>
+      <div class="form-group">
+        <label for="insurance-type">Insurance Type:</label>
+        <select 
+          id="insurance-type" 
+          class="form-control"
+          [value]="insuranceType$ | async"
+          (change)="setInsuranceType($event)">
+          @for (option of insuranceOptions; track option.id) {
+            <option [value]="option.id">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="diagnosis">Primary Diagnosis/Chief Complaint:</label>
+        <textarea 
+          id="diagnosis" 
+          class="form-control diagnosis-input"
+          [value]="diagnosis$ | async"
+          (input)="updateDiagnosis($event)"
+          placeholder="Enter primary diagnosis or chief complaint"></textarea>
+      </div>
+
+      <button class="generate-btn" (click)="generateCoding()">
+        <span class="icon">⚙️</span>
+        Generate Coding
+      </button>
+    </div>
+
+    <div class="coding-results" *ngIf="codingResult$ | async as result">
+      <h3>Coding Results</h3>
+      
+      <div class="results-container">
+        <div class="result-group">
+          <h4>CPT Code</h4>
+          <div class="code-display">
+            <span class="code">{{ result.cptCode }}</span>
+            <span class="description">{{ result.cptDescription }}</span>
+          </div>
+        </div>
+
+        <div class="result-group">
+          <h4>ICD-10 Code</h4>
+          <div class="code-display">
+            <span class="code">{{ result.icdCode }}</span>
+            <span class="description">{{ result.icdDescription }}</span>
+          </div>
+        </div>
+
+        <div class="result-group">
+          <h4>Fee Schedule</h4>
+          <div class="fee">
+            <span class="amount">${{ result.fee }}</span>
+            <span class="insurance-note">Based on {{ insuranceType$ | async | titlecase }} rates</span>
+          </div>
+        </div>
+        
+        <div class="result-group">
+          <h4>AI-Determined Parameters</h4>
+          <div class="parameters">
+            <div class="parameter">
+              <span class="label">Visit Complexity:</span>
+              <span class="value">{{ result.visitComplexity | titlecase }}</span>
+            </div>
+            <div class="parameter">
+              <span class="label">Time Spent:</span>
+              <span class="value">
+                {{ result.timeSpent === 'less-than-15' ? 'Less than 15 minutes' :
+                   result.timeSpent === '15-30' ? '15-30 minutes' :
+                   result.timeSpent === '30-45' ? '30-45 minutes' : 
+                   'More than 45 minutes' }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="notes" *ngIf="result.notes">
+          <p>{{ result.notes }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

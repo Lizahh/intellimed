@@ -1,0 +1,344 @@
+<div class="soap-display-container">
+  <h3 class="main-title">SOAP Notes</h3>
+
+  <!-- Template Mode Toggle -->
+  <div class="template-mode-container">
+    <div class="template-toggle">
+      <button 
+        class="template-btn" 
+        [class.active]="isTemplateModeActive('default')"
+        (click)="setTemplateMode('default')">
+        Default Template
+      </button>
+      <button 
+        class="template-btn" 
+        [class.active]="isTemplateModeActive('custom')"
+        (click)="setTemplateMode('custom')">
+        Custom Template
+      </button>
+    </div>
+  </div>
+
+  <!-- SOAP Notes Display -->
+  <div class="soap-content">
+    <!-- SOAP Note sections - always display, either with sample or generated content -->
+    <div class="soap-sections" [ngClass]="{'default-template': isTemplateModeActive('default'), 'custom-template': isTemplateModeActive('custom')}">
+      
+      <!-- DEFAULT TEMPLATE VIEW -->
+      <ng-container *ngIf="isTemplateModeActive('default')">
+        <!-- Visit Summary Section -->
+        <div *ngIf="visitSummary" class="soap-section">
+          <div class="section-header">
+            <h3>Visit Summary</h3>
+          </div>
+          <div class="section-content">
+            <textarea class="editable-content" [value]="visitSummary" (input)="visitSummary = $any($event.target).value"></textarea>
+          </div>
+        </div>
+
+        <!-- Subjective Section -->
+        <div *ngIf="subjective" class="soap-section">
+          <div class="section-header">
+            <h3>Subjective</h3>
+          </div>
+          <div class="section-content">
+            <textarea class="editable-content" [value]="subjective" (input)="subjective = $any($event.target).value"></textarea>
+          </div>
+        </div>
+
+        <!-- Objective Section -->
+        <div *ngIf="objective" class="soap-section">
+          <div class="section-header">
+            <h3>Objective</h3>
+          </div>
+          <div class="section-content">
+            <textarea class="editable-content" [value]="objective" (input)="objective = $any($event.target).value"></textarea>
+          </div>
+        </div>
+
+        <!-- Assessment & Plan Section -->
+        <div *ngIf="assessmentPlan" class="soap-section">
+          <div class="section-header">
+            <h3>Assessment & Plan</h3>
+          </div>
+          <div class="section-content">
+            <textarea class="editable-content" [value]="assessmentPlan" (input)="assessmentPlan = $any($event.target).value"></textarea>
+          </div>
+        </div>
+      </ng-container>
+      
+      <!-- CUSTOM TEMPLATE VIEW - with visit type options and section selections -->
+      <ng-container *ngIf="isTemplateModeActive('custom')">
+        <div class="custom-soap-layout">
+          <!-- Visit Type Selection -->
+          <div class="visit-type-section">
+            <h3 class="section-title">Visit Type</h3>
+            <div class="visit-type-buttons">
+              <button 
+                class="visit-type-btn" 
+                [class.active]="visitType === 'initial'"
+                (click)="setVisitType('initial')">
+                New Consult
+              </button>
+              <button 
+                class="visit-type-btn" 
+                [class.active]="visitType === 'followup'"
+                (click)="setVisitType('followup')">
+                Follow Up
+              </button>
+            </div>
+          </div>
+          
+          <!-- Section Selection Lists -->
+          <div class="section-groups">
+            <!-- Visit Summary Section -->
+            <div class="section-group">
+              <h3 class="section-title">Visit Summary</h3>
+              <div class="section-items">
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox" checked>
+                      <span class="checkmark"></span>
+                      <span class="section-label">Visit Summary</span>
+                    </label>
+                    <div class="template-selector">
+                      <button class="template-btn bullet active" title="Bullet">•</button>
+                      <button class="template-btn paragraph" title="Paragraph">¶</button>
+                      <button class="template-btn concise" title="Concise">⚡</button>
+                      <button class="template-btn detailed" title="Detailed">📄</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Subjective Section -->
+            <div class="section-group">
+              <h3 class="section-title">Subjective</h3>
+              <div class="section-items">
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox" checked>
+                      <span class="checkmark"></span>
+                      <span class="section-label">Chief Complaint</span>
+                    </label>
+                    <div class="template-selector">
+                      <button class="template-btn bullet active" title="Bullet">•</button>
+                      <button class="template-btn paragraph" title="Paragraph">¶</button>
+                      <button class="template-btn concise" title="Concise">⚡</button>
+                      <button class="template-btn detailed" title="Detailed">📄</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox" checked>
+                      <span class="checkmark"></span>
+                      <span class="section-label">History of Present Illness</span>
+                    </label>
+                    <div class="template-selector">
+                      <button class="template-btn bullet" title="Bullet">•</button>
+                      <button class="template-btn paragraph active" title="Paragraph">¶</button>
+                      <button class="template-btn concise" title="Concise">⚡</button>
+                      <button class="template-btn detailed" title="Detailed">📄</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                      <span class="section-label">Past Medical History</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox" checked>
+                      <span class="checkmark"></span>
+                      <span class="section-label">Medications and Supplements</span>
+                    </label>
+                    <div class="template-selector">
+                      <button class="template-btn bullet active" title="Bullet">•</button>
+                      <button class="template-btn paragraph" title="Paragraph">¶</button>
+                      <button class="template-btn concise" title="Concise">⚡</button>
+                      <button class="template-btn detailed" title="Detailed">📄</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                      <span class="section-label">Family History</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                      <span class="section-label">Social History</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                      <span class="section-label">Review of Systems</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Objective Section -->
+            <div class="section-group">
+              <h3 class="section-title">Objective</h3>
+              <div class="section-items">
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox" checked>
+                      <span class="checkmark"></span>
+                      <span class="section-label">Physical Examination</span>
+                    </label>
+                    <div class="template-selector">
+                      <button class="template-btn bullet" title="Bullet">•</button>
+                      <button class="template-btn paragraph" title="Paragraph">¶</button>
+                      <button class="template-btn concise" title="Concise">⚡</button>
+                      <button class="template-btn detailed active" title="Detailed">📄</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Physical Examination Text Field -->
+                <div class="physical-exam-input">
+                  <textarea 
+                    placeholder="Enter physical examination details here..."
+                    class="physical-exam-textarea" 
+                    [(ngModel)]="physicalExamInput"></textarea>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                      <span class="section-label">Laboratory, Imaging and Diagnostic Test Results</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Assessment & Plan Section -->
+            <div class="section-group">
+              <h3 class="section-title">Assessment & Plan</h3>
+              <div class="section-items">
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox" checked>
+                      <span class="checkmark"></span>
+                      <span class="section-label">Assessment & Plan</span>
+                    </label>
+                    <div class="template-selector">
+                      <button class="template-btn bullet" title="Bullet">•</button>
+                      <button class="template-btn paragraph active" title="Paragraph">¶</button>
+                      <button class="template-btn concise" title="Concise">⚡</button>
+                      <button class="template-btn detailed" title="Detailed">📄</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="section-item">
+                  <div class="section-item-header">
+                    <label class="checkbox-container">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                      <span class="section-label">Patient Instructions</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- SOAP Note Preview Sections -->
+            <div class="generated-preview">
+              <h3 class="section-title">Generated SOAP Notes Preview</h3>
+              <div class="soap-sections">
+                <!-- Visit Summary Section -->
+                <div *ngIf="visitSummary" class="soap-section custom-section">
+                  <div class="section-header custom-header">
+                    <h3>Visit Summary</h3>
+                  </div>
+                  <div class="section-content">
+                    <textarea class="editable-content formatted-content" [value]="visitSummary" (input)="visitSummary = $any($event.target).value"></textarea>
+                  </div>
+                </div>
+
+                <!-- Subjective Section -->
+                <div *ngIf="subjective" class="soap-section custom-section">
+                  <div class="section-header custom-header">
+                    <h3>Subjective</h3>
+                  </div>
+                  <div class="section-content">
+                    <textarea class="editable-content formatted-content" [value]="subjective" (input)="subjective = $any($event.target).value"></textarea>
+                  </div>
+                </div>
+
+                <!-- Objective Section -->
+                <div *ngIf="objective" class="soap-section custom-section">
+                  <div class="section-header custom-header">
+                    <h3>Objective</h3>
+                  </div>
+                  <div class="section-content">
+                    <textarea class="editable-content formatted-content" [value]="objective" (input)="objective = $any($event.target).value"></textarea>
+                  </div>
+                </div>
+
+                <!-- Assessment & Plan Section -->
+                <div *ngIf="assessmentPlan" class="soap-section custom-section">
+                  <div class="section-header custom-header">
+                    <h3>Assessment & Plan</h3>
+                  </div>
+                  <div class="section-content">
+                    <textarea class="editable-content formatted-content" [value]="assessmentPlan" (input)="assessmentPlan = $any($event.target).value"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="action-buttons">
+    <button class="btn-copy" (click)="copyToClipboard()">
+      <i class="copy-icon">📋</i>
+      Copy to Clipboard
+    </button>
+    <button class="btn-export" (click)="exportAsPdf()">
+      <i class="export-icon">📤</i>
+      Export as PDF
+    </button>
+  </div>
+</div>

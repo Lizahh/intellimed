@@ -1,0 +1,79 @@
+.patient-info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(32, 67, 92, 0.08);
+}
+
+.patient-section, .visit-type-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-label, .visit-type-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.patient-details {
+  display: flex;
+  align-items: center;
+}
+
+.patient-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.user-icon {
+  color: #4f8df0;
+  font-size: 14px;
+}
+
+.patient-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #343a40;
+}
+
+.patient-id {
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 2px;
+  margin-left: 38px;
+}
+
+.visit-type-dropdown {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  font-size: 14px;
+  color: #343a40;
+  width: 160px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+  &:focus {
+    border-color: #4f8df0;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(79, 141, 240, 0.25);
+  }
+}

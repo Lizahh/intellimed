@@ -1,0 +1,251 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  object-fit: contain;
+}
+
+.logo-text {
+  h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #20435C; /* Dark blue from the logo */
+  }
+  
+  .ai-text {
+    color: #2ca58d; /* Sea green color for AI */
+  }
+  
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
+  
+  .assistant-text {
+    color: #6c757d; /* Gray color matching the section-title */
+  }
+}
+
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6c757d;
+  margin: 0;
+}
+
+.add-icon {
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.current-date {
+  font-size: var(--font-size-sm);
+  color: var(--dark-gray);
+  margin: 0 0 12px 0;
+  padding: 0 16px;
+}
+
+.patient-list {
+  overflow-y: auto;
+}
+
+.patient-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--medium-gray);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: var(--light-gray);
+  }
+  
+  &.selected {
+    background-color: var(--info-light);
+    border-left: 3px solid var(--info-color);
+  }
+}
+
+.patient-info {
+  flex: 1;
+}
+
+.patient-name {
+  margin: 0 0 4px 0;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.patient-id {
+  margin: 0 0 8px 0;
+  font-size: var(--font-size-sm);
+  color: var(--gray);
+}
+
+.appointment-time {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--dark-gray);
+  
+  .time-icon {
+    margin-right: 6px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+.patient-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.status-tag {
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  text-align: center;
+  
+  &.new-patient {
+    background-color: var(--info-light);
+    color: var(--info-color);
+  }
+  
+  &.follow-up {
+    background-color: var(--success-light);
+    color: var(--success-color);
+  }
+  
+  &.annual-physical {
+    background-color: var(--warning-light);
+    color: var(--warning-color);
+  }
+}
+
+.agents-section {
+  margin-top: auto;
+  border-top: 1px solid var(--medium-gray);
+}
+
+.agent-list {
+  padding: 8px 0;
+}
+
+.agent-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  border-radius: var(--border-radius-md);
+  margin: 4px 8px;
+  
+  &:hover {
+    background-color: var(--light-gray);
+    transform: translateY(-2px);
+  }
+  
+  &.active {
+    background-color: var(--info-light);
+    border-left: 3px solid var(--info-color);
+  }
+  
+  .agent-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    font-size: 18px;
+    background-color: var(--light-gray);
+    border-radius: 50%;
+  }
+  
+  .agent-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .agent-name {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 2px;
+  }
+  
+  .agent-task {
+    font-size: var(--font-size-xs);
+    color: var(--gray);
+  }
+}
+
+.usage-section {
+  padding: 16px;
+  border-top: 1px solid var(--medium-gray);
+}
+
+.usage-label {
+  font-size: var(--font-size-sm);
+  margin-bottom: 8px;
+}
+
+.usage-bar {
+  height: 6px;
+  background-color: var(--medium-gray);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.usage-progress {
+  height: 100%;
+  background-color: var(--info-color);
+  border-radius: var(--border-radius-sm);
+}
+
+.settings-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-size: var(--font-size-sm);
+  color: var(--gray);
+  
+  &:hover {
+    color: var(--primary-color);
+  }
+  
+  .settings-icon {
+    margin-right: 8px;
+  }
+}

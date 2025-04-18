@@ -1,0 +1,61 @@
+<div class="audio-recorder-container">
+  <div class="voice-recording-section">
+    <h4 class="recording-title">Voice Recording</h4>
+    <div class="recording-time">{{ recordingTime$ | async | displayTime }}</div>
+  </div>
+
+  <div class="recording-area">
+    <div class="status-message" 
+         [class.ready]="(recordingStatus$ | async) === 'inactive'"
+         [class.recording]="(recordingStatus$ | async) === 'recording'"
+         [class.paused]="(recordingStatus$ | async) === 'paused'">
+      <span *ngIf="(recordingStatus$ | async) === 'inactive'">Ready to record</span>
+      <span *ngIf="(recordingStatus$ | async) === 'recording'">Recording...</span>
+      <span *ngIf="(recordingStatus$ | async) === 'paused'">Paused</span>
+    </div>
+  </div>
+
+  <div class="controls-wrapper">
+    <div class="controls-container">
+      <div class="controls-buttons" *ngIf="recordingStatus$ | async as recordingStatus">
+        <!-- All three buttons are visible, but enabled/disabled based on state -->
+        <button class="control-btn record-btn" 
+                [ngClass]="{'active': recordingStatus === 'recording'}"
+                [disabled]="recordingStatus === 'recording'"
+                (click)="startRecording()">
+          <div class="animation-container" *ngIf="recordingStatus === 'recording'">
+            <div class="recording-pulse"></div>
+            <div class="recording-pulse delay-1"></div>
+            <div class="recording-pulse delay-2"></div>
+          </div>
+          <i class="material-icons">mic</i>
+        </button>
+        
+        <button class="control-btn pause-btn"
+                [ngClass]="{'active': recordingStatus === 'paused'}"
+                [disabled]="recordingStatus === 'inactive'"
+                (click)="recordingStatus === 'recording' ? pauseRecording() : resumeRecording()">
+          <i class="material-icons">{{ recordingStatus === 'paused' ? 'play_arrow' : 'pause' }}</i>
+        </button>
+        
+        <button class="control-btn stop-btn"
+                [disabled]="recordingStatus === 'inactive'"
+                (click)="stopRecording()">
+          <i class="material-icons">crop_square</i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="divider">
+    <span>or</span>
+  </div>
+  
+  <div class="upload-section">
+    <input type="file" id="audioFile" accept="audio/*" class="file-input" (change)="onFileSelected($event)">
+    <label for="audioFile" class="upload-btn">
+      <i class="material-icons">upload_file</i>
+      Upload Audio
+    </label>
+  </div>
+</div>

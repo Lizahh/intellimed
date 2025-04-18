@@ -1,0 +1,36 @@
+<div class="header-container">
+  <div class="header-content">
+    <div class="patient-info" *ngIf="currentPatient$ | async as patient">
+      <div class="patient-icon">
+        <span class="icon">👤</span>
+      </div>
+      <div class="patient-details">
+        <h2 class="patient-name">{{ patient.name }}</h2>
+        <p class="patient-id">{{ patient.id }}</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-outline change-patient" (click)="changePatient()">
+        <i class="icon">🔄</i>
+        Change Patient
+      </button>
+      <button class="btn btn-purple new-session" (click)="newSession()">
+        <i class="icon">➕</i>
+        New Session
+      </button>
+      <div class="doctor-info">
+        <span class="doctor-name">{{ doctorName }}</span>
+        <div class="doctor-avatar">
+          <span class="avatar-text">{{ getInitials(doctorName) }}</span>
+        </div>
+        <div class="avatar-menu">
+          <button class="btn-logout" (click)="logout()">
+            <i class="icon">🚪</i>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  transition: filter 0.3s ease;
+}
+
+.blurred-app {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}

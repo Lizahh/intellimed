@@ -1,0 +1,26 @@
+<!-- Modal is in a wrapper outside the app container -->
+<app-add-patient *ngIf="showAddPatientModal" (closeModal)="closeAddPatientModal()"></app-add-patient>
+
+<!-- Main app container with blur when modal is active -->
+<div class="app-container" [class.blurred-app]="showAddPatientModal">
+  <div class="sidebar">
+    <app-sidebar (addPatientClicked)="openAddPatientModal()"></app-sidebar>
+  </div>
+  <div class="main-content">
+    <app-header [doctorName]="currentDoctor" (logoutRequested)="logout()"></app-header>
+    
+    <!-- Chart Summary component - only visible when Summer agent is active -->
+    <app-chart-summary 
+      [visible]="showChartSummary" 
+      [currentPatient]="currentPatient">
+    </app-chart-summary>
+    
+    <!-- Coding component - only visible when Bill agent is active -->
+    <app-coding 
+      *ngIf="showCodingComponent">
+    </app-coding>
+    
+    <!-- Router outlet for patient details or other content -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

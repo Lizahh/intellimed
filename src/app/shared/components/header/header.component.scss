@@ -1,0 +1,160 @@
+.header-container {
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 16px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.patient-info {
+  display: flex;
+  align-items: center;
+}
+
+.patient-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #e3f2fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  
+  .icon {
+    font-size: 20px;
+  }
+}
+
+.patient-details {
+  .patient-name {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .patient-id {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+  
+  .icon {
+    margin-right: 8px;
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid #1976d2;
+  color: #1976d2;
+  
+  &:hover {
+    background-color: #e3f2fd;
+  }
+}
+
+.btn-primary {
+  background-color: #1976d2;
+  border: 1px solid #1976d2;
+  color: #fff;
+  
+  &:hover {
+    background-color: #1565c0;
+  }
+}
+
+.change-patient {
+  margin-right: 12px;
+}
+
+.doctor-info {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  position: relative;
+}
+
+.doctor-name {
+  margin-right: 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.doctor-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #19A0AF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:hover {
+    box-shadow: 0 0 0 3px rgba(25, 160, 175, 0.2);
+  }
+  
+  .avatar-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+  }
+}
+
+.avatar-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  min-width: 150px;
+  z-index: 10;
+  
+  .btn-logout {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #dc3545;
+    font-size: 14px;
+    text-align: left;
+    
+    &:hover {
+      background-color: rgba(220, 53, 69, 0.1);
+    }
+    
+    .icon {
+      margin-right: 8px;
+    }
+  }
+}
